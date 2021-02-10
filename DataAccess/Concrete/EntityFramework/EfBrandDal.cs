@@ -9,9 +9,9 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCarDal : ICarDal
+    public class EfBrandDal : IBrandDal
     {
-        public void Add(Cars entity)
+        public void Add(Brands entity)
         {
             using (CarContext context = new CarContext())
             {
@@ -21,7 +21,7 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
-        public void Delete(Cars entity)
+        public void Delete(Brands entity)
         {
             using (CarContext context = new CarContext())
             {
@@ -31,36 +31,25 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
-
-
-    
-
-        public Cars Get(Expression<Func<Cars, bool>> filter)
+        public Brands Get(Expression<Func<Brands, bool>> filter)
         {
             using (CarContext context = new CarContext())
             {
-                return context.Set<Cars>().SingleOrDefault(filter);
+                return context.Set<Brands>().SingleOrDefault(filter);
             }
         }
 
-
-        public List<Cars> GetAll(Expression<Func<Cars, bool>> filter = null)
+        public List<Brands> GetAll(Expression<Func<Brands, bool>> filter = null)
         {
             using (CarContext context = new CarContext())
             {
-
-                return filter == null
-                               ? context.Set<Cars>().ToList()
-                               : context.Set<Cars>().Where(filter).ToList();
+                return filter == null 
+                                ? context.Set<Brands>().ToList()
+                                : context.Set<Brands>().Where(filter).ToList();
             }
         }
 
-        public List<Cars> GetAllByCategory(int BrandID)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Cars entity)
+        public void Update(Brands entity)
         {
             using (CarContext context = new CarContext())
             {
