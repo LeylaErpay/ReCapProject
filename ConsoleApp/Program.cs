@@ -19,7 +19,7 @@ namespace ConsoleApp
             CarManager carManager = new CarManager(new EfCarDal());
             foreach (var car in carManager.GetAll())
             {
-                Console.WriteLine(car.CarID);
+                Console.WriteLine(car.CarName);
             }
         }
     }
