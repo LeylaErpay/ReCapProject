@@ -9,7 +9,7 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            //AddNewDataToDb();
+            
             //DeleteTestForCars(carManager);
             //UpdateTestForCars(carManager);
 
