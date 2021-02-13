@@ -24,18 +24,18 @@ namespace Business.Concrete
         {
            if(DateTime.Now.Hour == 22)
             {
-                return new ErrorDataResult<List<Cars>>(Messages.ProductsListed);
+                return new ErrorDataResult<List<Cars>>(Messages.CarsListed);
             }
-            return new SuccessDataResult<List<Cars>>(_carDal.GetAll(), Messages.ProductsListed);
+            return new SuccessDataResult<List<Cars>>(_carDal.GetAll(), Messages.CarsListed);
         }
         public IResult Add(Cars car)
         {
             if(car.CarName.Length<2)
             {
-                return new ErrorResult(Messages.ProductNameInvalid);
+                return new ErrorResult(Messages.CarNameInvalid);
             }
             _carDal.Add(car);
-            return new SuccessResult(Messages.ProductAdded);
+            return new SuccessResult(Messages.CarAdded);
         }
  
         public IDataResult<List<Cars>> GetAllByBrandId(int id)
@@ -51,9 +51,9 @@ namespace Business.Concrete
                         (c => c.DailyPrice >= min && c.DailyPrice <= max));
         }
 
-        public IDataResult<Cars> GetById(int carID)
+        public IDataResult<Cars> GetById(int carId)
         {
-            return new SuccessDataResult<Cars>( _carDal.Get(c => c.CarID == carID));
+            return new SuccessDataResult<Cars>( _carDal.Get(c => c.CarID == carId));
             
         }
 
