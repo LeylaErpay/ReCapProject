@@ -3,14 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Entities.DTOs
+namespace Entities.Dto
 {
-    public class CarDetailDTO : IDto
+    public class CarDetailDto:IDto
     {
-        public int CarID { get; set; }
-        public string CarName { get; set; }
-        public int BrandID { get; set; }
+        //Data Transformation Object
+        public int Id { get; set; }
         public string BrandName { get; set; }
-        public decimal DailyPrice { get; set; }
+        public string ColorName { get; set; }
+        public long ModelYear { get; set; }
+        public int DailyPrice { get; set; }
+        public string Decription { get; set; }
     }
 }

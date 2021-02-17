@@ -26,12 +26,13 @@ namespace ConsoleApp
         private static void AddRental()
         {
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
-            var rental1 = rentalManager.Add(new Rentals { CarID = 1, CustomerID = 2, RentDate = new DateTime(2021, 1, 20) , ReturnDate = new DateTime(2021, 5, 25) });
-            var rental2 = rentalManager.Add(new Rentals { CarID = 4, CustomerID = 1, RentDate = new DateTime(2021, 2, 10), ReturnDate = new DateTime(2021, 6, 26) });
-            
-            Console.WriteLine(rental1.Message);
-            Console.WriteLine(rental2.Message);
-           
+            var addedResult = rentalManager.Add(new Rentals { CarID = 3, CustomerID = 1, RentDate = DateTime.Now });
+            Console.WriteLine(addedResult.Message);
+
+
+
+
+
 
         }
 

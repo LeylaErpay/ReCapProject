@@ -1,25 +1,37 @@
 ﻿using Business.Abstract;
 using Core.Utilities.Results;
-using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Business.Concrete
+namespace Business.Concrate
 {
     public class CustomerManager : ICustomerService
     {
-        ICustomerDal _customerDal;
-
-        public CustomerManager(ICustomerDal customerDal)
+        public IResult Add(Customers obj)
         {
-            _customerDal = customerDal;
+            throw new NotImplementedException();
+        }
+
+        public IResult Delete(Customers obj)
+        {
+            throw new NotImplementedException();
         }
 
         public IDataResult<List<Customers>> GetAll()
         {
-            return new SuccessDataResult<List<Customers>>(_customerDal.GetAll());
+            throw new NotImplementedException();
+        }
+
+        public IDataResult<Customers> GetById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IResult Update(Customers obj)
+        {
+            throw new NotImplementedException();
         }
     }
 }

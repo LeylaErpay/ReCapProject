@@ -1,20 +1,17 @@
 ﻿using Core.Entities;
-using System.ComponentModel.DataAnnotations;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Entities.Concrete
 {
-    public class Cars :IEntity
+    public class Cars:IEntity
     {
-        [Key]
-        [System.ComponentModel.DataAnnotations.Schema.ForeignKey("Car")]
-        public int CarID { get; set; }
-        public int BrandID { get; set; }     
-        public int ColorID { get; set; }
-        public string ModelYear { get; set; }
-        public decimal DailyPrice { get; set; }
-        public string Descriptions { get; set; }
-        public string CarName { get; set; }
-        public object ID { get; set; }
-        public string Name { get; set; }
+        public int Id { get; set; }
+        public int BrandId { get; set; }
+        public int ColorId { get; set; }
+        public short ModelYear { get; set; }
+        public int DailyPrice { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -9,9 +9,6 @@ namespace Business.Abstract
 {
     public interface IRentalService
     {
-        IDataResult<List<Rentals>> GetAll();
-        IResult Add(Rentals rental);
-        IResult Delete(Rentals rental);
-        IResult Update(Rentals rental);
+        IDataResult<List<RentalDetailDto>> GetRentalDetails();
     }
 }

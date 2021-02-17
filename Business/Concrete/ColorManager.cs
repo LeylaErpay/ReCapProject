@@ -1,11 +1,15 @@
 ﻿using Business.Abstract;
+using Business.Constant;
+using Core.Utilities.Results;
+
 using DataAccess.Abstract;
+using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Business.Concrete
+namespace Business.Concrate
 {
     public class ColorManager : IColorService
     {
@@ -16,26 +20,41 @@ namespace Business.Concrete
             _colorDal = colorDal;
         }
 
-        public void Add(Colors color)
+        public IResult Add(Colors obj)
         {
-            _colorDal.Add(color);
+            if (_colorDal.Get(c => c.Id == obj.Id) != null)
+            {
+                return new ErrorResult(Messages.AddedError);
+            }
+            _colorDal.Add(obj);
+            return new SuccessResult(Messages.ColorAdded);
         }
 
-        public void Delete(Colors color)
+        public IResult Delete(Colors obj)
         {
-            _colorDal.Delete(color);
+            //Burada UI dan gelen rengin id'si ile DataAccess'de id'si uyuşan renk olup olmadığı kontrol ediliyor.
+            if (_colorDal.Get(c => c.Id == obj.Id)==null)
+            {
+                return new ErrorResult(Messages.IdError);
+            }
+            _colorDal.Delete(obj);
+            return new SuccessResult(Messages.ColorDeleted);
         }
 
-        public List<Colors> GetAll() => _colorDal.GetAll();
-
-        public Colors GetById(int id)
+        public IDataResult<List<Colors>> GetAll()
         {
-            return _colorDal.Get(c => c.ColorID ==id);
+            return new SuccessDataResult<List<Colors>>(_colorDal.GetAll(), Messages.ColorListed);
         }
 
-        public void Update(Colors color)
+        public IDataResult<Colors> GetById(int id)
         {
-            _colorDal.Update(color);
+            return new SuccessDataResult<Colors>(_colorDal.Get(c => c.Id == id));
+        }
+
+        public IResult Update(Colors obj)
+        {
+            _colorDal.Update(obj);
+            return new SuccessResult(Messages.ColorUpdated);
         }
     }
 }

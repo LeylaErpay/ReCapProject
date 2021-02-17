@@ -1,8 +1,8 @@
 ﻿CREATE TABLE [dbo].[Customers] (
-    [CustomerID]  INT        NOT NULL,
-    [UserID]      INT        NULL,
+    [Id]  INT        NOT NULL,
+    [UserId]      INT        NULL,
     [CompanyName] NCHAR (10) NULL,
-    PRIMARY KEY CLUSTERED ([CustomerID] ASC),
-    FOREIGN KEY ([UserID]) REFERENCES [dbo].[Users] ([UserID])
+    PRIMARY KEY CLUSTERED ([Id] ASC),
+    FOREIGN KEY ([UserId]) REFERENCES [dbo].[Users] ([Id])
 );
 

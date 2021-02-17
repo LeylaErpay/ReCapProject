@@ -1,13 +1,13 @@
 ﻿using Core.Entities;
-using System.ComponentModel.DataAnnotations;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Entities.Concrete
 {
-    public class Colors :IEntity
+    public class Colors:IEntity
     {
-        [Key]
-        [System.ComponentModel.DataAnnotations.Schema.ForeignKey("Color")]
-        public int ColorID { get; set; }
+        public int Id { get; set; }
         public string ColorName { get; set; }
     }
 }

@@ -1,18 +1,6 @@
 ﻿CREATE TABLE [dbo].[Brands] (
-    [BrandID]   INT     PRIMARY KEY  IDENTITY (1, 1) NULL,
+    [Id]   INT           IDENTITY (1, 1) NOT NULL,
     [BrandName] NVARCHAR (25) NULL,
-    
+    PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
-INSERT INTO Brands(BrandName)
-VALUES
-	
-	('BMW'),
-	('Mercedes'),
-	('Audi'),
-	('Peugeot');
-
-
-	select *from dbo.Brands
-
-	

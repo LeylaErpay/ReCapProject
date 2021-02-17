@@ -1,6 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
-using Entities.DTOs;
+using Entities.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,78 +11,59 @@ namespace DataAccess.Concrete.InMemory
 {
     public class InMemoryCarDal : ICarDal
     {
-        //global olanları _ ile kullanırız
         List<Cars> _cars;
-
-        public InMemoryCarDal(List<Cars> cars)
-        {
-            _cars = cars;
-        }
-
-        //ctor tab tab yaparsan otomatik aşağıdaki metot gelir
         public InMemoryCarDal()
         {
-            _cars = new List<Cars>
-            {
-                //new Car{CarId=1,BrandId=1,ColorId=1,ModelYear=1999,DailyPrice=10000,Description="BMW i8"},
-                //new Car{CarId=2,BrandId=1,ColorId=1,ModelYear=2000,DailyPrice=20000,Description="BMW X5"},
-                //new Car{CarId=3,BrandId=2,ColorId=1,ModelYear=2005,DailyPrice=30000,Description="Mercedes A180"},
-                //new Car{CarId=4,BrandId=2,ColorId=1,ModelYear=2010,DailyPrice=40000,Description="Mercedes C180"},
+            _cars = new List<Cars> {
+            new Cars{Id=1, BrandId=1, ColorId=1, DailyPrice=25000, ModelYear=2002, Description="Hiç bir sorunu yoktur."},
+            new Cars{Id=2, BrandId=1, ColorId=2, DailyPrice=38000, ModelYear=2007, Description="Ağır kazası vardır"},
+            new Cars{Id=3, BrandId=2, ColorId=1, DailyPrice=55000, ModelYear=2011, Description="Dosta gider."},
+            new Cars{Id=4, BrandId=3, ColorId=3, DailyPrice=19000, ModelYear=1998, Description="Komple boyalı."},
+            new Cars{Id=5, BrandId=2, ColorId=2, DailyPrice=175000, ModelYear=2021, Description="Sıfır araba."},
             };
-            
         }
-
         public void Add(Cars car)
         {
             _cars.Add(car);
         }
 
-        public void Delete(Cars car)
+        public void Delete(Cars obj)
         {
-            Cars carToDelete = _cars.SingleOrDefault(c => c.CarID == car.CarID);
-            _cars.Remove(carToDelete);
+            _cars.Remove(_cars.SingleOrDefault(c=> c.Id==obj.Id));
         }
 
         public Cars Get(Expression<Func<Cars, bool>> filter)
         {
             throw new NotImplementedException();
-        }
+        }       
 
         public List<Cars> GetAll(Expression<Func<Cars, bool>> filter = null)
         {
             return _cars;
-        }
-
-        public List<Cars> GetAllCategory(int CategoryId)
-        {
-            return (List<Cars>)_cars.Where(c => c.CarID == CategoryId);
-        }
+        }        
 
         public void Update(Cars car)
         {
-            List<Cars> _cars1 = _cars;
-            Cars carToUpdate = _cars1.SingleOrDefault(c => c.CarID == car.CarID);
-            carToUpdate.CarID = car.CarID;
-            carToUpdate.BrandID = car.BrandID;
+            Cars carToUpdate = _cars.SingleOrDefault(c=>c.Id==car.Id);
+            carToUpdate.BrandId = car.BrandId;
+            carToUpdate.ColorId = car.ColorId;
+            carToUpdate.ModelYear = car.ModelYear;
             carToUpdate.DailyPrice = car.DailyPrice;
+            carToUpdate.Description = car.Description;
         }
 
         public List<Cars> GetAll()
         {
-            throw new NotImplementedException();
+            return _cars;
         }
 
-        public List<Cars> GetAllByCategory(int BrandId)
+        public Cars GetById(int id)
         {
-            throw new NotImplementedException();
+            //Id si uyuşan arabayı gönderir.
+            return _cars.SingleOrDefault(c => c.Id == id);
         }
 
-        public List<Cars> Get()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<CarDetailDTO> GetCarDetails()
+        public List<CarDetailDto> GetCarDetails()
         {
             throw new NotImplementedException();
         }

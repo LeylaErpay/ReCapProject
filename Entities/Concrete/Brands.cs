@@ -1,13 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Core.Entities;
+﻿using Core.Entities;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Entities.Concrete
 {
-    public class Brands :IEntity
+    public class Brands:IEntity
     {
-        [Key]
-        [System.ComponentModel.DataAnnotations.Schema.ForeignKey("Brand")]
-        public int BrandID { get; set; }
+        public int Id { get; set; }
         public string BrandName { get; set; }
     }
 }

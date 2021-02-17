@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DataAccess.Concrete.EntityFramework
+namespace DataAccess.Concrete.EntityFrameWork
 {
-    public class EfUserDal: EfEntityRepositorBase<Users, CarContext>, IUserDal
+    public class EfUserDal: EfEntityRepositoryBase<Users, ReCapContext>, IUserDal
     {
     }
 }
