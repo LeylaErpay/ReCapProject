@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Concrete;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +22,8 @@ namespace WebAPI.Controllers
             _carService = carService;
         }
 
+    
+
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
@@ -31,6 +35,28 @@ namespace WebAPI.Controllers
             return BadRequest(result);
 
         }
+        [HttpPost("add")]
+        public IActionResult Add(Cars car)
+        {
+            var result = _carService.Add(car);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+
+        }
+
+        //[HttpGet("getbybrandid")]
+        //public IActionResult GetByBrandId(int id)
+        //{
+        //    var result = _carService.GetByBrandId(id);
+        //    //if (result.Success)
+        //    //{
+        //    //    return Ok(result);
+        //    //}
+        //    return BadRequest(result);
+        //}
     }
 
 }

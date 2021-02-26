@@ -1,15 +1,11 @@
 ﻿using Business.Abstract;
 using Business.Constant;
 using Core.Utilities.Results;
-
 using DataAccess.Abstract;
-using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace Business.Concrate
+namespace Business.Concrete
 {
     public class ColorManager : IColorService
     {

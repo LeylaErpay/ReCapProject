@@ -1,5 +1,6 @@
 ﻿using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.DTOs;
 using System;
@@ -10,11 +11,11 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFrameWork
 {
-    public class EfRentalDal: EfEntityRepositoryBase<Rentals, ReCapContext>, IRentalDal
+    public class EfRentalDal: EfEntityRepositoryBase<Rentals, CarContext>, IRentalDal
     {
         public List<RentalDetailDto> GetRentalDetails()
         {
-            using (ReCapContext context = new ReCapContext())
+            using (CarContext context = new CarContext())
             {
                 var result = from rent in context.Rentals
                              join car in context.Cars on rent.CarId equals car.Id

@@ -15,11 +15,11 @@ namespace DataAccess.Concrete.InMemory
         public InMemoryCarDal()
         {
             _cars = new List<Cars> {
-            new Cars{Id=1, BrandId=1, ColorId=1, DailyPrice=25000, ModelYear=2002, Description="Hiç bir sorunu yoktur."},
-            new Cars{Id=2, BrandId=1, ColorId=2, DailyPrice=38000, ModelYear=2007, Description="Ağır kazası vardır"},
-            new Cars{Id=3, BrandId=2, ColorId=1, DailyPrice=55000, ModelYear=2011, Description="Dosta gider."},
-            new Cars{Id=4, BrandId=3, ColorId=3, DailyPrice=19000, ModelYear=1998, Description="Komple boyalı."},
-            new Cars{Id=5, BrandId=2, ColorId=2, DailyPrice=175000, ModelYear=2021, Description="Sıfır araba."},
+            new Cars{Id=1, BrandId=1, ColorId=1, DailyPrice=25000, ModelYear=2002, Descriptions="Hiç bir sorunu yoktur."},
+            new Cars{Id=2, BrandId=1, ColorId=2, DailyPrice=38000, ModelYear=2007, Descriptions="Ağır kazası vardır"},
+            new Cars{Id=3, BrandId=2, ColorId=1, DailyPrice=55000, ModelYear=2011, Descriptions="Dosta gider."},
+            new Cars{Id=4, BrandId=3, ColorId=3, DailyPrice=19000, ModelYear=1998, Descriptions="Komple boyalı."},
+            new Cars{Id=5, BrandId=2, ColorId=2, DailyPrice=175000, ModelYear=2021, Descriptions="Sıfır araba."},
             };
         }
         public void Add(Cars car)
@@ -49,7 +49,7 @@ namespace DataAccess.Concrete.InMemory
             carToUpdate.ColorId = car.ColorId;
             carToUpdate.ModelYear = car.ModelYear;
             carToUpdate.DailyPrice = car.DailyPrice;
-            carToUpdate.Description = car.Description;
+            carToUpdate.Descriptions = car.Descriptions;
         }
 
         public List<Cars> GetAll()

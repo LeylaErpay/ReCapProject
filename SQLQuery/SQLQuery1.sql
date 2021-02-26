@@ -2,24 +2,24 @@
 	Id int PRIMARY KEY IDENTITY(1,1),
 	BrandId int,
 	ColorId int,
-	ModelYear smallint,
+	ModelYear int,
 	DailyPrice int,
-	Description nvarchar(30),
-	FOREIGN KEY (BrandId) REFERENCES Colors(Id),
-	FOREIGN KEY (ColorId) REFERENCES Brands(Id)
+	Descriptions nvarchar(30),
+	FOREIGN KEY (BrandId) REFERENCES Brands(Id),
+	FOREIGN KEY (ColorId) REFERENCES Colors(Id)
 )
 
 CREATE TABLE Colors(
 	Id int PRIMARY KEY IDENTITY(1,1),
-	ColorName nvarchar(15),
+	ColorName nvarchar(15)
 )
 
 CREATE TABLE Brands(
 	Id int PRIMARY KEY IDENTITY(1,1),
-	BrandName nvarchar(20),
+	BrandName nvarchar(20)
 )
 
-INSERT INTO Cars(BrandID,ColorID,ModelYear,DailyPrice,Descriptions)
+INSERT INTO Cars(BrandId,ColorId,ModelYear,DailyPrice,Descriptions)
 VALUES
 	(1,1,2007,155,'Manuel'),
 	(3,2,2012,170,'Otomatik'),
@@ -41,4 +41,5 @@ VALUES
 	('Volkswagen'),
 	('Ford');
 
-select * from Brands
+
+	select *from Brands

@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Business.Concrate
+namespace Business.Concrete
 {
     public class RentalManager : IRentalService
     {

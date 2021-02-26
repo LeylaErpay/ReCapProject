@@ -1,5 +1,6 @@
 ﻿using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.Dto;
 using Microsoft.EntityFrameworkCore;
@@ -11,11 +12,11 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFrameWork
 {
-    public class EfCarDal : EfEntityRepositoryBase<Cars, ReCapContext>, ICarDal
+    public class EfCarDal : EfEntityRepositoryBase<Cars, CarContext>, ICarDal
     {
         public List<CarDetailDto> GetCarDetails()
         {
-            using (ReCapContext context=new ReCapContext())
+            using (CarContext context=new CarContext())
             {
                 var result = from c in context.Cars
                              join b in context.Brands on c.BrandId equals b.Id
@@ -24,8 +25,8 @@ namespace DataAccess.Concrete.EntityFrameWork
                                  Id = c.Id, 
                                  BrandName = b.BrandName, 
                                  ColorName = co.ColorName, 
-                                 DailyPrice = c.DailyPrice, 
-                                 Decription = c.Description, 
+                                 DailyPrice = c.DailyPrice,
+                                 //Descriptions = c.Descriptions, 
                                  ModelYear = c.ModelYear 
                              };
                 return result.ToList();
