@@ -1,5 +1,8 @@
 ﻿using Business.Abstract;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -9,19 +12,35 @@ namespace Business.Concrete
 {
     public class CustomerManager : ICustomerService
     {
-        public IResult Add(Customers obj)
+        ICustomerDal _customerDal;
+
+        public CustomerManager(ICustomerDal customerDal)
         {
-            throw new NotImplementedException();
+            _customerDal = customerDal;
         }
 
-        public IResult Delete(Customers obj)
+        [ValidationAspect(typeof(ColorValidator))]
+        public IResult Add(Customers customer)
         {
-            throw new NotImplementedException();
+
+            _customerDal.Add(customer);
+            return new SuccessResult();
+        }
+
+        public IResult Delete(Customers customer)
+        {
+            _customerDal.Delete(customer);
+            return new SuccessResult();
+        }
+
+        public IDataResult<Customers> Get(int id)
+        {
+            return new SuccessDataResult<Customers>(_customerDal.Get(p => p.Id == id));
         }
 
         public IDataResult<List<Customers>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Customers>>(_customerDal.GetAll());
         }
 
         public IDataResult<Customers> GetById(int id)
@@ -29,9 +48,10 @@ namespace Business.Concrete
             throw new NotImplementedException();
         }
 
-        public IResult Update(Customers obj)
+        public IResult Update(Customers customer)
         {
-            throw new NotImplementedException();
+            _customerDal.Update(customer);
+            return new SuccessResult();
         }
     }
 }

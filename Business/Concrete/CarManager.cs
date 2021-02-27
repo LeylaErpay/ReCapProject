@@ -2,12 +2,15 @@
 using Business.Constant;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFrameWork;
 using Entities.Concrete;
 using Entities.Dto;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 
@@ -29,19 +32,43 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarAdded);
         }
 
-        public IDataResult<List<Cars>> GetAll()
+        public IResult Delete(Cars car)
         {
-            return new SuccessDataResult<List<Cars>>(_carDal.GetAll(), Messages.CarListed);
+            _carDal.Delete(car);
+            return new SuccessResult(Messages.CarDeleted);
         }
 
-        //public IDataResult<List<Cars>> GetAllByModelYear(int year)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        [ValidationAspect(typeof(CarValidator))]
+        public IResult Update(Cars car)
+        {
+            _carDal.Update(car);
+            return new SuccessResult(Messages.CarUpdated);
+        }
 
-        //public IDataResult<List<CarDetailDto>> GetCarDetails()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public IDataResult<Cars> Get(int id)
+        {
+            return new SuccessDataResult<Cars>(_carDal.Get(c => c.Id == id));
+        }
+
+        public IDataResult<List<Cars>> GetAll()
+        {
+            return new SuccessDataResult<List<Cars>>(_carDal.GetAll());
+        }
+
+        public IDataResult<List<Cars>> GetCarsByBrandId(int id)
+        {
+            return new SuccessDataResult<List<Cars>>(_carDal.GetAll(c => c.BrandId == id));
+        }
+
+        public IDataResult<List<Cars>> GetCarsByColorId(int id)
+        {
+            return new SuccessDataResult<List<Cars>>(_carDal.GetAll(c => c.ColorId == id));
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
+        }
+
     }
 }

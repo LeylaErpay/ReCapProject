@@ -1,5 +1,8 @@
 ﻿using Business.Abstract;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -9,29 +12,41 @@ namespace Business.Concrete
 {
     public class UserManager : IUserService
     {
-        public IResult Add(Users obj)
+        IUserDal _userDal;
+
+        public UserManager(IUserDal userDal)
         {
-            throw new NotImplementedException();
+            _userDal = userDal;
         }
 
-        public IResult Delete(Users obj)
+        [ValidationAspect(typeof(UserValidator))]
+        public IResult Add(Users user)
         {
-            throw new NotImplementedException();
+            _userDal.Add(user);
+            return new SuccessResult();
+        }
+
+        public IResult Delete(Users user)
+        {
+            _userDal.Delete(user);
+            return new SuccessResult();
+        }
+
+        public IDataResult<Users> Get(int id)
+        {
+
+            return new SuccessDataResult<Users>(_userDal.Get(p => p.Id == id));
         }
 
         public IDataResult<List<Users>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Users>>(_userDal.GetAll());
         }
 
-        public IDataResult<Users> GetById(int id)
+        public IResult Update(Users user)
         {
-            throw new NotImplementedException();
-        }
-
-        public IResult Update(Users obj)
-        {
-            throw new NotImplementedException();
+            _userDal.Update(user);
+            return new SuccessResult();
         }
     }
 }

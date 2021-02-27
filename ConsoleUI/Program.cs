@@ -11,11 +11,32 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarManager carManager = new CarManager(new EfCarDal());
-            RentalManager rentalManager = new RentalManager(new EfRentalDal());
-                  
-           // RentalAdd(rentalManager);       
+            // CarManager carManager = new CarManager(new EfCarDal());
+            // RentalManager rentalManager = new RentalManager(new EfRentalDal());                  
+            // RentalAdd(rentalManager);     
+            //CarTest();
         }
+        //private static void CarTest()
+        //{
+        //    CarManager carManager = new CarManager(new EfCarDal()
+        //        , new BrandManager(new EfBrandDal()));
+
+        //    var result = carManager.GetCarDetails();
+
+        //    if (result.Success == true)
+        //    {
+        //        foreach (var car in result.Data)
+        //        {
+        //            Console.WriteLine(car.CarName + "/" + car.BrandId);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine(result.Message);
+        //    }
+
+
+        //}
 
         //private static void RentalAdd(RentalManager rentalManager)
         //{

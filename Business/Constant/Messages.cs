@@ -37,5 +37,17 @@ namespace Business.Constant
         public static string CarValidateError = "Araç açıklaması 15 karakterden fazla olmalı veya aracın kirası 0'dan fazla olmalı.";
         public static string RequirementError = "Aranan gereksinime uygun eleman bulunamadı.";
         public static string IdError = "Id'ler uyuşmuyor.";
+        internal static string CarCountOfBrandError = "Bir markada en fazla 10 araba olabilir ";
+        internal static string CarNameAlreadyExists= "Bu isimde zaten başka bir araba var";
+        internal static string BrandLimitExceded= "marka limiti aşıldığı için yeni araba eklenemiyor";
+
+        public static string ImagesAdded = "resim eklendi";
+        public static string FailAddedImageLimit = "Resim limitine erişildi!";
+        internal static string CarRental="araba kiralandı";
+
+        public static string Multiple_Add_Message(string text) => $@"Multiple {text}s  Added";
+        public static string Add_Message(string text) => $@" {text}  Added";
+        public static string Update_Message(string text) => $@"Updated the {text}";
+        public static string Delete_Message(string text) => $@"Deleted the {text}";
     }
 }

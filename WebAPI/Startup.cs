@@ -1,14 +1,17 @@
 using Business.Abstract;
 using Business.Concrete;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.EntityFrameWork;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -29,12 +32,25 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           services.AddControllers();
-           services.AddSingleton<ICarService, CarManager>();
-           services.AddSingleton<ICarDal, EfCarDal>();
+
+            //services.AddControllers().AddNewtonsoftJson(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore);
+            //services.AddDbContext<CarContext>(opt => opt.UseSqlServer("Data Source = DESKTOP-DLJIA4E; Initial Catalog = CarDb; Integrated Security = True;"));
+            services.AddControllers();
+            //services.AddSingleton<ICarService,CarManager>();
+            //services.AddSingleton<ICarDal,EfCarDal>();
+            //services.AddSingleton<IBrandService,BrandManager>();
+            //services.AddSingleton<IBrandDal,EfBrandDal>();
+            //services.AddSingleton<IColorService,ColorManager>();
+            //services.AddSingleton<IColorDal, EfColorDal>();
+            //services.AddSingleton<IUserService,UserManager>();
+            //services.AddSingleton<IUserDal,EfUserDal>();
+            //services.AddSingleton<ICustomerService,CustomerManager>();
+            //services.AddSingleton<ICustomerDal,EfCustomerDal>();
+            //services.AddSingleton<IRentalService,RentalManager>();
+            //services.AddSingleton<IRentalDal, EfRentalDal>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constant;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -18,69 +20,42 @@ namespace Business.Concrete
             _brandDal = brandDal;
         }
 
-        public IResult Add(Brands obj)
+        [ValidationAspect(typeof(BrandValidator))]
+        public IResult Add(Brands brand)
         {
-            throw new NotImplementedException();
+            _brandDal.Add(brand);
+            return new SuccessResult();
         }
 
-        public IResult Delete(Brands obj)
+        public IResult Delete(Brands brand)
         {
-            throw new NotImplementedException();
+            _brandDal.Delete(brand);
+            return new SuccessResult();
+        }
+
+        public IDataResult<Brands> Get(int id)
+        {
+            return new SuccessDataResult<Brands>(_brandDal.Get(p => p.Id == id));
         }
 
         public IDataResult<List<Brands>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Brands>>(_brandDal.GetAll());
         }
 
-        public IDataResult<Brands> GetById(int id)
+        public IDataResult<Brands> GetById(int colorId)
         {
             throw new NotImplementedException();
         }
 
-        public IResult Update(Brands obj)
+        public IResult Update(Brands brand)
         {
-            throw new NotImplementedException();
+            _brandDal.Update(brand);
+            return new SuccessResult();
         }
 
-        //public IResult Add(Brands obj)
-        //{
-        //    if (obj.BrandName.Length < 2)
-        //    {
-        //        new ErrorResult(Messages.BrandAdded);
-        //    }
-        //    _brandDal.Add(obj);
-        //    return new SuccessResult(Messages.BrandAdded);
-        //}
 
-        //public IResult Delete(Brands obj)
-        //{
-        //    _brandDal.Delete(obj);
-        //    return new SuccessResult(Messages.BrandDeleted);
-        //}
 
-        //public IDataResult<List<Brands>> GetAll()
-        //{
-        //    return new SuccessDataResult<List<Brands>>(_brandDal.GetAll());
-        //}
 
-        //public IDataResult<Brands> GetById(int id)
-        //{
-        //    //Burada id'leri uyuşan marka var ise brandResult'a atanıyor.
-        //    var brandResult = _brandDal.Get(b => b.Id == id);
-        //    if (brandResult==null)
-        //    {
-        //        //Eğer brandResult null ise geriye hata gönderiliyor.
-        //        return new ErrorDataResult<Brands>(Messages.ListedError);
-        //    }
-        //    //if çalışmaz ise id'si uyuşan marka geri gönderiliyor.
-        //    return new SuccessDataResult<Brands>(brandResult);
-        //}
-
-        //public IResult Update(Brands obj)
-        //{
-        //    _brandDal.Update(obj);
-        //    return new SuccessResult(Messages.BrandUpdated);
-        //}
     }
 }
