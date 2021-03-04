@@ -2,7 +2,6 @@
 using Business.Constant;
 using Core.Utilities.Results;
 using Entities.Concrete;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -18,11 +17,11 @@ namespace Business.Concrete
         private readonly IHostingEnvironment environment;
         string FileDirectory;
 
-        public FileManager(IHostingEnvironment environment)
-        {
-            this.environment = environment;
-            FileDirectory = environment.ContentRootPath + "/images/";
-        }
+        //public FileManager(IHostingEnvironment environment)
+        //{
+        //    this.environment = environment;
+        //    FileDirectory = environment.ContentRootPath + "/images/";
+        //}
         //public IResult Delete(string path)
         //{
         //    var roadpath = Path.Combine(FileDirectory, path + ".png");

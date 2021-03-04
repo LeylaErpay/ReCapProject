@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Entities.Concrete;
+using Entities.Concrete.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -44,6 +46,13 @@ namespace Business.Constant
         public static string ImagesAdded = "resim eklendi";
         public static string FailAddedImageLimit = "Resim limitine erişildi!";
         internal static string CarRental="araba kiralandı";
+        internal static string UserRegistered;
+        internal static Users UserNotFound;
+        internal static Users PasswordError;
+        internal static string SuccessfulLogin;
+        internal static string UserAlreadyExists;
+        internal static string AccessTokenCreated;
+        internal static string CarCountOfCategoryError;
 
         public static string Multiple_Add_Message(string text) => $@"Multiple {text}s  Added";
         public static string Add_Message(string text) => $@" {text}  Added";

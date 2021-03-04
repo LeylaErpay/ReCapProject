@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace Business.Concrete
@@ -26,7 +27,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(CarImageValidator))]
-        public IResult Add(IFormFile file, CarImage carImage)
+        public IResult Add(CarImage carImage)
         {
             IResult result = BusinessRules.Run(
                 CheckIfImageLimit(carImage.CarId)
@@ -37,7 +38,7 @@ namespace Business.Concrete
                 return result;
             }
 
-            carImage.ImagePath = FileHelper.AddAsync(file);
+           // carImage.ImagePath = FileHelper.AddAsync(file);
             carImage.Date = DateTime.Now;
             _carImageDal.Add(carImage);
             return new SuccessResult();
@@ -75,7 +76,7 @@ namespace Business.Concrete
             return new SuccessDataResult<CarImage>(_carImageDal.Get(p => p.Id == id));
         }
 
-        public IDataResult<List<CarImage>> GetAll()
+        public IDataResult<List<CarImage>> GetAll(Expression<Func<CarImage, bool>> filter = null)
         {
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll());
         }
