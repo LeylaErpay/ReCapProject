@@ -43,9 +43,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Brands>>(_brandDal.GetAll());
         }
 
-        public IDataResult<Brands> GetById(int colorId)
+        public IDataResult<Brands> GetById(int brandId)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Brands>(_brandDal.Get(c => c.Id == brandId));
         }
 
         public IResult Update(Brands brand)
